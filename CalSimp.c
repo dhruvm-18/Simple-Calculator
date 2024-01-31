@@ -1,39 +1,66 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include <stdio.h>  
 
-int main() {
-    char ch;
-    double a, b;
-    while (1) {
-        printf("Enter an operator (+, -, *, /), if want to exit press x: ");
-        scanf(" %c", &ch);
+int main()  
+{  
+    char opt;
+    int n1, n2;
+    float res;
+    char choice;
 
-        if (ch == 'x')
-            exit(0);
-        printf("Enter two first and second operand: ");
-        scanf("%lf %lf", &a, &b);
+    do {
+        printf("Choose an operator (+, -, *, /) to perform the operation in C Calculator: ");
+        scanf(" %c", &opt);
 
-        switch (ch) {
-        case '+':
-            printf("%.1lf + %.1lf = %.1lf\n", a, b, a + b);
-            break;
+        if (opt == '/')  
+            printf("You have selected: Division\n");  
+        else if (opt == '*')  
+            printf("You have selected: Multiplication\n");  
+        else if (opt == '-')  
+            printf("You have selected: Subtraction\n");  
+        else if (opt == '+')  
+            printf("You have selected: Addition\n");  
 
-        case '-':
-            printf("%.1lf - %.1lf = %.1lf\n", a, b, a - b);
-            break;
+        printf("Enter the first number: ");  
+        scanf("%d", &n1);  
+        printf("Enter the second number: ");  
+        scanf("%d", &n2);  
+          
+        switch(opt)  
+        {  
+            case '+':  
+                res = n1 + n2;  
+                printf("Addition of %d and %d is: %.2f\n", n1, n2, res);  
+                break;  
+              
+            case '-':  
+                res = n1 - n2;  
+                printf("Subtraction of %d and %d is: %.2f\n", n1, n2, res);  
+                break;  
+                
+            case '*':  
+                res = n1 * n2;  
+                printf("Multiplication of %d and %d is: %.2f\n", n1, n2, res);  
+                break;            
+              
+            case '/':  
+                if (n2 == 0)   
+                {  
+                    printf("Divisor cannot be zero. Please enter another value: ");  
+                    scanf("%d", &n2);        
+                }  
+                res = (float)n1 / n2;  
+                printf("Division of %d and %d is: %.2f\n", n1, n2, res);  
+                break;  
+                
+            default:  
+                printf("Invalid operator\n");               
+        }  
 
-        case '*':
-            printf("%.1lf * %.1lf = %.1lf\n", a, b, a * b);
-            break;
+        printf("Do you want to perform another calculation? (Y/N): ");
+        scanf(" %c", &choice);
+    } while (choice == 'Y' || choice == 'y');
 
-        case '/':
-            printf("%.1lf / %.1lf = %.1lf\n", a, b, a / b);
-            break;
+    printf("Thank you for using the calculator!\n");
 
-        default:
-            printf("Error! please write a valid operator\n");
-        }
-
-        printf("\n");
-    }
-}
+    return 0;  
+} 
